@@ -34,7 +34,7 @@ public class Battleship {
 	}
 
 	void makeMove() {
-		for(int i = 0; i < 8; i++) {
+		for(int i = 0; i < 8; i++) {https://github.com/Andrew-Dev/Battleship.git
 			for(int j = 0; j < 8; j++) {
 				if (this.grid[i][j] == -1) {
 					String wasHitSunkOrMiss = placeMove(this.letters[i] + String.valueOf(j));
