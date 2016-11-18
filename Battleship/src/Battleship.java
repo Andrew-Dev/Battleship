@@ -26,8 +26,8 @@ public class Battleship {
 		for(int i = 0; i < grid.length; i++) { for(int j = 0; j < grid[i].length; j++) grid[i][j] = -1; }
 
 		// Place Ships
-		placeDestroyer("A0", "A1");
-		placeSubmarine("B0", "B2");
+		placeDestroyer("A0", "A1");  //1 square
+		placeSubmarine("B0", "B2");  //
 		placeCruiser("C0", "C2");
 		placeBattleship("D0", "D3");
 		placeCarrier("E0", "E4");
