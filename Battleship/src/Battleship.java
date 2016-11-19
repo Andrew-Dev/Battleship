@@ -11,6 +11,7 @@ import java.io.*;
 import java.net.Socket;
 import java.net.InetAddress;
 import java.lang.Thread;
+import java.util.Random;
 
 public class Battleship {
 	public static String API_KEY = "206231291"; ///////// PUT YOUR API KEY HERE /////////
@@ -21,6 +22,7 @@ public class Battleship {
 	char[] letters;
 	int[][] grid;
 	int[] foundPos = null;
+	int counter = 0;
 
 	void placeShips(String opponentID) {
 		// Fill Grid With -1s
@@ -39,10 +41,17 @@ public class Battleship {
 
 	void makeMove() {
 		if(foundPos != null) {
+
 			FindRestOfShip findRestOfShip = new FindRestOfShip(foundPos);
+
 			findRestOfShip.nextPosition(this);
+			if(findRestOfShip.getResult().equals("Sunk")) {
+				foundPos = null;
+			}
+			foundPos = findRestOfShip.getNewPosition();
 			return;
 		}
+
 		for(int i = 0; i < 8; i++) {
 			for(int j = 0; j < 8; j++) {
 				if (this.grid[i][j] == -1) {
