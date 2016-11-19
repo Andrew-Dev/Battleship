@@ -76,6 +76,7 @@ public class FindRestOfShip {
 
     public void move(Battleship b) {
         attackSpot = "" + newPosition[0] + newPosition[1];
+        System.out.printf("Attackspot: %s", attackSpot);
         result = b.placeMove(attackSpot);
         if (result.equals("Hit") || result.equals("Sunk")) {
             b.grid[newPosition[0]][newPosition[1]] = 1;
