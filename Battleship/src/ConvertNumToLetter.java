@@ -21,5 +21,6 @@ public class ConvertNumToLetter {
         } else if (number == 7){
             return 'H';
         }
+        return ' ';
     }
 }
