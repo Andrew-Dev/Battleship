@@ -3,7 +3,7 @@
  */
 public class ConvertNumToLetter {
 
-    public char numToLetter(int number) {
+    public static char numToLetter(int number) {
         if (number == 0) {
             return 'A';
         } else if (number == 1) {
