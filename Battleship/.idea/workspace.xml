@@ -21,7 +21,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+<<<<<<< HEAD
       <file leaf-file-name="Battleship.java" pinned="false" current-in-tab="false">
+=======
+      <file leaf-file-name="Battleship.java" pinned="false" current-in-tab="true">
+>>>>>>> 612acee7b74e41dc1d73aaa961da96ccfdee103d
         <entry file="file://$PROJECT_DIR$/src/Battleship.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="442">
@@ -33,6 +37,7 @@
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="ConvertNumToLetter.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ConvertNumToLetter.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -52,6 +57,10 @@
       </list>
     </option>
   </component>
+=======
+    </leaf>
+  </component>
+>>>>>>> 612acee7b74e41dc1d73aaa961da96ccfdee103d
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
       <projects_view />
@@ -61,7 +70,10 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/Battleship.java" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/src/ConvertNumToLetter.java" />
+=======
+>>>>>>> 612acee7b74e41dc1d73aaa961da96ccfdee103d
       </list>
     </option>
   </component>
@@ -527,6 +539,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/ConvertNumToLetter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -535,5 +548,7 @@
         </state>
       </provider>
     </entry>
+=======
+>>>>>>> 612acee7b74e41dc1d73aaa961da96ccfdee103d
   </component>
 </project>
