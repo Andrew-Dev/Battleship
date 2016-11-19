@@ -3,24 +3,61 @@
  */
 public class DecideAttack {
 
-    public static void findShip(Battleship b) {
-        for(int i = 0; i < 8; i+=2) {
-            for(int j = 0; j < 8; j+=2) {
-                char letter = ConvertNumToLetter.numToLetter(j);
-                String posStr = "" + letter + i;
-                String result = b.placeMove(posStr);
-                if(result.equals("Hit") || result.equals("Sunk")) {
-                    int[] pos = new int[2];
-                    pos[0] = i;
-                    pos[1] = j;
-                    b.grid[i][j] = 1;
-                    FindRestOfShip findRestOfShip = new FindRestOfShip(pos);
-                    findRestOfShip.nextPosition(b);
-                } else if(result.equals("Miss")) {
-                    b.grid[i][j] = 0;
+    private int[] pos = new int[2];
+    private Battleship b = new Battleship();
+
+    public DecideAttack(Battleship b) {
+        this.b = b;
+    }
+
+    public void findShip() {
+        for(int i = 0; i < 8; i++) {
+            for(int j = 0; j < 8; j++) {
+                if (b.grid[i][j] == -1 && (Math.abs(i - j)) % 2 == 0 ) {
+                    char letter = ConvertNumToLetter.numToLetter(j);
+                    String posStr = "" + letter + i;
+                    String result = b.placeMove(posStr);
+                    if (result.equals("Hit") || result.equals("Sunk")) {
+                        pos[0] = i;
+                        pos[1] = j;
+                        b.grid[i][j] = 1;
+                    } else if (result.equals("Miss")) {
+                        b.grid[i][j] = 0;
+                    }
+                    return;
+
                 }
             }
         }
+
+        for(int i = 0; i < 8; i++) {
+            for(int j = 0; j < 8; j++) {
+                if (b.grid[i][j] == -1 && (Math.abs(i - j)) % 2 == 1 ) {
+                    char letter = ConvertNumToLetter.numToLetter(j);
+                    String posStr = "" + letter + i;
+                    String result = b.placeMove(posStr);
+                    if (result.equals("Hit") || result.equals("Sunk")) {
+                        pos[0] = i;
+                        pos[1] = j;
+                        b.grid[i][j] = 1;
+                    } else if (result.equals("Miss")) {
+                        b.grid[i][j] = 0;
+                    }
+                    return;
+
+                }
+            }
+        }
+
+
+    }
+
+    public int[] getPos() {
+        return pos;
+    }
+
+    public Battleship getB() {
+        return b;
     }
 
 }

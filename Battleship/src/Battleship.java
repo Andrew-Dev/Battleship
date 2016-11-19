@@ -10,7 +10,6 @@
 import java.io.*;
 import java.net.Socket;
 import java.net.InetAddress;
-import java.lang.Thread;
 import java.util.Random;
 
 public class Battleship {
@@ -23,6 +22,7 @@ public class Battleship {
 	int[][] grid;
 	int[] foundPos = null;
 	int counter = 0;
+    boolean foundLocationOrigin = false;
 
 	void placeShips(String opponentID) {
 		// Fill Grid With -1s
@@ -31,27 +31,105 @@ public class Battleship {
 		}
 
 		// Place Ships
-		placeDestroyer("A3", "B3");
-		placeSubmarine("B4", "B6");
-		placeCruiser("E3", "G3");
-		placeBattleship("E4", "E7");
-		placeCarrier("C2", "G2");
 
-	}
+		Random r = new Random();
+        int randomResult = r.nextInt(10);
+        if (randomResult == 0) {
+            placeDestroyer("A7", "B7");
+            placeSubmarine("D1", "D3");
+            placeCruiser("B1", "B3");
+            placeBattleship("B5", "E5");
+            placeCarrier("G1", "G5");
+        } else if (randomResult == 1) {
+            placeDestroyer("F3", "F4");
+            placeSubmarine("H3", "H5");
+            placeCruiser("C5", "E5");
+            placeBattleship("A4", "A7");
+            placeCarrier("B1", "F1");
+        } else if (randomResult == 2) {
+            placeDestroyer("G3", "H3");
+            placeSubmarine("B2", "B4");
+            placeCruiser("F6", "H6");
+            placeBattleship("D4", "D7");
+            placeCarrier("C1", "G1");
+        } else if (randomResult == 3) {
+            placeDestroyer("D3", "E3");
+            placeSubmarine("C1", "E1");
+            placeCruiser("H2", "H4");
+            placeBattleship("D5", "G5");
+            placeCarrier("B2", "B6");
+        } else if (randomResult == 4) {
+            placeDestroyer("G1", "G2");
+            placeSubmarine("A6", "C6");
+            placeCruiser("G4", "G6");
+            placeBattleship("A1", "D1");
+            placeCarrier("E2", "E6");
+        } else if (randomResult == 5) {
+            placeDestroyer("H3", "H4");
+            placeSubmarine("A1", "A3");
+            placeCruiser("E2", "G2");
+            placeBattleship("D6", "G6");
+            placeCarrier("B4", "F4");
+        } else if (randomResult == 6) {
+            placeDestroyer("F1", "G1");
+            placeSubmarine("A1", "A3");
+            placeCruiser("G4", "G6");
+            placeBattleship("B2", "E2");
+            placeCarrier("A5", "E5");
+        } else if (randomResult == 7) {
+            placeDestroyer("F2", "G2");
+            placeSubmarine("G4", "G6");
+            placeCruiser("C6", "E6");
+            placeBattleship("D1", "D4");
+            placeCarrier("B1", "B5");
+        } else if (randomResult == 8) {
+            placeDestroyer("A6", "B6");
+            placeSubmarine("A1", "A3");
+            placeCruiser("C5", "E5");
+            placeBattleship("C2", "F2");
+            placeCarrier("G3", "G7");
+        } else if (randomResult == 9) {
+            placeDestroyer("G4", "H4");
+            placeSubmarine("C2", "C4");
+            placeCruiser("A6", "C6");
+            placeBattleship("A1", "A4");
+            placeCarrier("E2", "E6");
+        } else {
+            placeDestroyer("A3", "B3");
+            placeSubmarine("B4", "B6");
+            placeCruiser("E3", "G3");
+            placeBattleship("E4", "E7");
+            placeCarrier("C2", "G2");
+        }
+
+    }
 
 	void makeMove() {
-		if(foundPos != null) {
 
-			FindRestOfShip findRestOfShip = new FindRestOfShip(foundPos);
+        if (foundPos != null) {
 
-			findRestOfShip.nextPosition(this);
-			if(findRestOfShip.getResult().equals("Sunk")) {
-				foundPos = null;
-			}
-			foundPos = findRestOfShip.getNewPosition();
-			return;
-		}
+            FindRestOfShip findRestOfShip = new FindRestOfShip(this);
+            findRestOfShip.nextPosition();
+            grid = findRestOfShip.getB().grid;
 
+            if (findRestOfShip.getResult().equals("Sunk")) {
+                foundPos = null;
+            } else {
+                foundPos = findRestOfShip.getNewPosition();
+            }
+        } else {
+            DecideAttack decideAttack = new DecideAttack(this);
+            decideAttack.findShip();
+            grid = decideAttack.getB().grid;
+            if (grid[decideAttack.getPos()[0]][decideAttack.getPos()[1]] == 1) {
+                foundPos = decideAttack.getPos();
+            } else {
+                foundPos = null;
+            }
+        }
+
+
+		/**
 		for(int i = 0; i < 8; i++) {
 			for(int j = 0; j < 8; j++) {
 				if (this.grid[i][j] == -1) {
@@ -69,6 +147,7 @@ public class Battleship {
 				}
 			}
 		}
+         **/
 	}
 
 

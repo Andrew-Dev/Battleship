@@ -5,84 +5,30 @@ public class FindRestOfShip {
 
     private int[] position;  //position 0 is x, and position 1 is y
     private int[] newPosition;
-    private int count;
     private String attackSpot;
     private String result;
+    private Battleship b;
 
-    public FindRestOfShip(int[] position) {
-        this.position = newPosition = position;
-        count = 0;
+    public FindRestOfShip(Battleship b) {
+        this.b = b;
         result = "";
     }
 
-    //0 if miss, 1 if hit
-    public void nextPosition(Battleship b) {
-        try {
-
-            if (b.grid[position[0] + 1][position[1]] == -1) {
-                newPosition[0] = position[0] + 1;
-                newPosition[1] = position[1];
-                move(b);
-            } else if (b.grid[position[0] - 1][position[1]] == -1) {
-                newPosition[0] = position[0] - 1;
-                newPosition[1] = position[1];
-                move(b);
-            } else if (b.grid[position[0]][position[1] + 1] == -1) {
-                newPosition[0] = position[0];
-                newPosition[1] = position[1] + 1;
-                move(b);
-            } else if (b.grid[position[0]][position[1] - 1] == -1) {
-                newPosition[0] = position[0];
-                newPosition[1] = position[1] - 1;
-                move(b);
-            } else if (b.grid[position[0] + 1][position[1]] == 1) {
-                newPosition[0] = position[0] - count - 1;
-                newPosition[1] = position[1];
-                if (b.grid[position[0] - 1][position[1]] == -1) {
-                    newPosition[0] = position[0] - 1;
-                    newPosition[1] = position[1];
-                    move(b);
-                }
-            } else if (b.grid[position[0] - 1][position[1]] == 1) {
-                newPosition[0] = position[0] + count + 1;
-                newPosition[1] = position[1];
-                if (b.grid[position[0] + 1][position[1]] == -1) {
-                    newPosition[0] = position[0] - 1;
-                    newPosition[1] = position[1];
-                    move(b);
-                }
-            } else if (b.grid[position[0]][position[1] + 1] == 1) {
-                newPosition[0] = position[0];
-                newPosition[1] = position[1] - count - 1;
-                if (b.grid[position[0]][position[1] - 1] == -1) {
-                    newPosition[0] = position[0] - 1;
-                    newPosition[1] = position[1];
-                    move(b);
-                }
-            } else if (b.grid[position[0]][position[1] - 1] == 1) {
-                newPosition[0] = position[0];
-                newPosition[1] = position[1] + count + 1;
-                if (b.grid[position[0]][position[1] + 1] == -1) {
-                    newPosition[0] = position[0] - 1;
-                    newPosition[1] = position[1];
-                    move(b);
-                }
-            }
-        } catch (ArrayIndexOutOfBoundsException e) {
-            newPosition = position;
-        }
+    //0 if miss, 1 if hit, -1 if unchecked
+    public void nextPosition() {
+        ProbabilityMap probabilityMap = new ProbabilityMap();
+        newPosition = probabilityMap.findHighest(b);
+        move();
 
     }
 
-    public void move(Battleship b) {
+    public void move() {
         setPositionToNewPos();
         attackSpot = "" + ConvertNumToLetter.numToLetter(newPosition[0]) + newPosition[1];
         System.out.printf("Attackspot: %s", attackSpot + "\n");
         result = b.placeMove(attackSpot);
         if (result.equals("Hit") || result.equals("Sunk")) {
             b.grid[position[0]][position[1]] = 1;
-            count++;
-            System.out.println("Count:" + count);
         } else {
             b.grid[newPosition[0]][newPosition[1]] = 0;
         }
@@ -98,6 +44,10 @@ public class FindRestOfShip {
 
     public void setPositionToNewPos() {
         position = newPosition;
+    }
+
+    public Battleship getB() {
+        return b;
     }
 
 }
