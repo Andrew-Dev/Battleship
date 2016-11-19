@@ -3,7 +3,7 @@
  */
 public class DecideAttack {
 
-    public int[] findShip(Battleship b) {
+    public static void findShip(Battleship b) {
         for(int i = 0; i < 8; i+=2) {
             for(int j = 0; j < 8; j+=2) {
                 char letter = ConvertNumToLetter.numToLetter(j);
@@ -14,12 +14,13 @@ public class DecideAttack {
                     pos[0] = i;
                     pos[1] = j;
                     b.grid[i][j] = 1;
+                    FindRestOfShip findRestOfShip = new FindRestOfShip(pos);
+                    findRestOfShip.nextPosition(b);
                 } else if(result.equals("Miss")) {
                     b.grid[i][j] = 0;
                 }
             }
         }
-        return null;
     }
 
 }

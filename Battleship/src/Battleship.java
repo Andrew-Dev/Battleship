@@ -20,6 +20,7 @@ public class Battleship {
 
 	char[] letters;
 	int[][] grid;
+	int[] foundPos = null;
 
 	void placeShips(String opponentID) {
 		// Fill Grid With -1s
@@ -33,9 +34,15 @@ public class Battleship {
 		placeCruiser("E3", "G3");
 		placeBattleship("E4", "E7");
 		placeCarrier("C2", "G2");
+
 	}
 
 	void makeMove() {
+		if(foundPos != null) {
+			FindRestOfShip findRestOfShip = new FindRestOfShip(foundPos);
+			findRestOfShip.nextPosition(this);
+			return;
+		}
 		for(int i = 0; i < 8; i++) {
 			for(int j = 0; j < 8; j++) {
 				if (this.grid[i][j] == -1) {
@@ -43,6 +50,9 @@ public class Battleship {
 
 					if (wasHitSunkOrMiss.equals("Hit") || wasHitSunkOrMiss.equals("Sunk")) {
 						this.grid[i][j] = 1;
+						foundPos = new int[2];
+						foundPos[0] = i;
+						foundPos[1] = j;
 					} else {
 						this.grid[i][j] = 0;			
 					}
@@ -51,6 +61,8 @@ public class Battleship {
 			}
 		}
 	}
+
+
 
 	////////////////////////////////////// ^^^^^ PUT YOUR CODE ABOVE HERE ^^^^^ //////////////////////////////////////
 
