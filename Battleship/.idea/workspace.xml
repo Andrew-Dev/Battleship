@@ -21,8 +21,17 @@
     <favorites_list name="Battleship" />
   </component>
   <component name="FileEditorManager">
+<<<<<<< HEAD
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="Battleship.java" pinned="false" current-in-tab="false">
+=======
+    <leaf>
+<<<<<<< HEAD
+      <file leaf-file-name="Battleship.java" pinned="false" current-in-tab="false">
+=======
+      <file leaf-file-name="Battleship.java" pinned="false" current-in-tab="true">
+>>>>>>> 612acee7b74e41dc1d73aaa961da96ccfdee103d
+>>>>>>> 4d0217fb94ae5d9ca7bd2c1ef500c161d33b3272
         <entry file="file://$PROJECT_DIR$/src/Battleship.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="180">
@@ -34,11 +43,20 @@
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="DecideAttack.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/DecideAttack.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
               <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+=======
+<<<<<<< HEAD
+      <file leaf-file-name="ConvertNumToLetter.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/ConvertNumToLetter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="20" column="27" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
+>>>>>>> 4d0217fb94ae5d9ca7bd2c1ef500c161d33b3272
               <folding />
             </state>
           </provider>
@@ -53,6 +71,13 @@
       </list>
     </option>
   </component>
+<<<<<<< HEAD
+=======
+=======
+    </leaf>
+  </component>
+>>>>>>> 612acee7b74e41dc1d73aaa961da96ccfdee103d
+>>>>>>> 4d0217fb94ae5d9ca7bd2c1ef500c161d33b3272
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
       <projects_view />
@@ -62,7 +87,14 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/Battleship.java" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/src/DecideAttack.java" />
+=======
+<<<<<<< HEAD
+        <option value="$PROJECT_DIR$/src/ConvertNumToLetter.java" />
+=======
+>>>>>>> 612acee7b74e41dc1d73aaa961da96ccfdee103d
+>>>>>>> 4d0217fb94ae5d9ca7bd2c1ef500c161d33b3272
       </list>
     </option>
   </component>
@@ -661,6 +693,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/Battleship.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -675,9 +708,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+=======
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/src/ConvertNumToLetter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="27" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
+>>>>>>> 4d0217fb94ae5d9ca7bd2c1ef500c161d33b3272
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 612acee7b74e41dc1d73aaa961da96ccfdee103d
+>>>>>>> 4d0217fb94ae5d9ca7bd2c1ef500c161d33b3272
   </component>
 </project>
