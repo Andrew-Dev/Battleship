@@ -105,6 +105,8 @@ public class Battleship {
     }
 
 	void makeMove() {
+        counter++;
+        System.out.printf("Move: %d\n", counter);
 
         if (foundPos != null) {
 
@@ -115,7 +117,7 @@ public class Battleship {
             if (findRestOfShip.getResult().equals("Sunk")) {
                 foundPos = null;
             } else {
-                foundPos = findRestOfShip.getNewPosition();
+                foundPos = findRestOfShip.getPosition();
             }
         } else {
             DecideAttack decideAttack = new DecideAttack(this);
@@ -128,26 +130,6 @@ public class Battleship {
             }
         }
 
-
-		/**
-		for(int i = 0; i < 8; i++) {
-			for(int j = 0; j < 8; j++) {
-				if (this.grid[i][j] == -1) {
-					String wasHitSunkOrMiss = placeMove(this.letters[i] + String.valueOf(j));
-
-					if (wasHitSunkOrMiss.equals("Hit") || wasHitSunkOrMiss.equals("Sunk")) {
-						this.grid[i][j] = 1;
-						foundPos = new int[2];
-						foundPos[0] = i;
-						foundPos[1] = j;
-					} else {
-						this.grid[i][j] = 0;			
-					}
-					return;
-				}
-			}
-		}
-         **/
 	}
 
 
