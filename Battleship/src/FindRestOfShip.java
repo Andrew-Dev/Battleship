@@ -9,16 +9,19 @@ public class FindRestOfShip {
     private int counter;
     private String result;
     private Battleship b;
+    ProbabilityMap probabilityMap;
 
-    public FindRestOfShip(Battleship b) {
+
+    public FindRestOfShip(Battleship b, int[] position) {
+        this.position = position;
         this.b = b;
         result = "";
     }
 
     //0 if miss, 1 if hit, -1 if unchecked
     public void nextPosition() {
-        ProbabilityMap probabilityMap = new ProbabilityMap(b);
-        newPosition = probabilityMap.findHighest();
+        probabilityMap = new ProbabilityMap(b);
+        newPosition = probabilityMap.findHighest(position);
         move();
 
     }
@@ -26,7 +29,7 @@ public class FindRestOfShip {
     public void move() {
         setPositionToNewPos();
         attackSpot = "" + ConvertNumToLetter.numToLetter(newPosition[1]) + newPosition[0];
-        System.out.printf("Attackspot: %s\n", attackSpot);
+        //System.out.printf("Attackspot: %s\n", attackSpot);
         result = b.placeMove(attackSpot);
         if (result.equals("Hit") || result.equals("Sunk")) {
             b.grid[position[0]][position[1]] = 1;

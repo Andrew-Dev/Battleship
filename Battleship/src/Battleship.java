@@ -22,7 +22,8 @@ public class Battleship {
 	int[][] grid;
 	int[] foundPos = null;
 	int counter = 0;
-    boolean foundLocationOrigin = false;
+    boolean firstTime = true;
+    int[] lengthOfShipSunk = new int[5];
 
 	void placeShips(String opponentID) {
 		// Fill Grid With -1s
@@ -105,17 +106,49 @@ public class Battleship {
     }
 
 	void makeMove() {
-        counter++;
-        System.out.printf("Move: %d\n", counter);
+        InARowCounter inARowCounter = new InARowCounter(this);
+
 
         if (foundPos != null) {
 
-            FindRestOfShip findRestOfShip = new FindRestOfShip(this);
+            FindRestOfShip findRestOfShip = new FindRestOfShip(this, foundPos);
             findRestOfShip.nextPosition();
             grid = findRestOfShip.getB().grid;
 
-            if (findRestOfShip.getResult().equals("Sunk")) {
+            if (findRestOfShip.getResult().equals("Hit")) {
+                counter ++;
+            } else if (findRestOfShip.getResult().equals("Sunk")) {
+                System.out.println(counter);
                 foundPos = null;
+                counter = 0;
+                int orientation = 0;
+                for (int i = 0; i < lengthOfShipSunk.length; i++) {
+                    if (lengthOfShipSunk[i] == 0) {
+                        lengthOfShipSunk[i] = inARowCounter.horizontalCounter(1, findRestOfShip.getPosition()[0], findRestOfShip.getPosition()[1]);
+                        if (lengthOfShipSunk[i] <= 1) {
+                            orientation = 1;
+                            lengthOfShipSunk[i] = inARowCounter.verticalCounter(1, findRestOfShip.getPosition()[0], findRestOfShip.getPosition()[1]);
+                        }
+                        System.out.println(lengthOfShipSunk[i]);
+                        return;
+                    }
+                }
+                /**
+                int[][] newProbability = findRestOfShip.probabilityMap.getProbability();
+                if (orientation == 1) {
+                    for (int i = counter; i > foundPos[1]; i--) {
+                        newProbability[i][foundPos[1] + 1] = -50;
+                        newProbability[i][foundPos[1] - 1] = -50;
+                    }
+                } else {
+                    for (int i = counter; i > foundPos[0]; i--) {
+                        newProbability[foundPos[0] + 1][i] = -50;
+                        newProbability[foundPos[0] - 1][i] = -50;
+                    }
+                }
+                findRestOfShip.probabilityMap.setProbability(newProbability);
+
+                **/
             } else {
                 foundPos = findRestOfShip.getPosition();
             }
@@ -125,6 +158,7 @@ public class Battleship {
             grid = decideAttack.getB().grid;
             if (grid[decideAttack.getPos()[0]][decideAttack.getPos()[1]] == 1) {
                 foundPos = decideAttack.getPos();
+                //firstTime = false;
             } else {
                 foundPos = null;
             }
